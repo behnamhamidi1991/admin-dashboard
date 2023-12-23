@@ -1,12 +1,16 @@
+import { BarChart } from "recharts";
 import ChartBox from "../../components/chartBox/ChartBox";
 import TopBox from "../../components/topBox/TopBox";
 import {
+  barChartBoxRevenue,
+  barChartBoxVisit,
   chartBoxConversion,
   chartBoxProduct,
   chartBoxRevenue,
   chartBoxUser,
 } from "../../data";
 import "./home.scss";
+import BarChartBox from "../../components/barChartBox/BarChartBox";
 
 const Home = () => {
   return (
@@ -28,8 +32,13 @@ const Home = () => {
         <ChartBox {...chartBoxRevenue} />
       </div>
       <div className="box box7">Box7</div>
-      <div className="box box8">Box8</div>
-      <div className="box box9">Box9</div>
+      <div className="box box8">
+        {" "}
+        <BarChartBox {...barChartBoxVisit} />{" "}
+      </div>
+      <div className="box box9">
+        <BarChartBox {...barChartBoxRevenue} />
+      </div>
     </div>
   );
 };
