@@ -4,6 +4,9 @@ import Users from "./pages/users/Users";
 import Products from "./pages/products/Products";
 import Navbar from "./components/navbar/Navbar";
 import Menu from "./components/menu/Menu";
+import Footer from "./components/footer/Footer";
+import Login from "./pages/login/Login";
+import "./styles/global.scss";
 
 function App() {
   const Layout = () => {
@@ -11,11 +14,15 @@ function App() {
       <div className="main">
         <Navbar />
         <div className="container">
-          <Menu />
+          <div className="menuContainer">
+            <Menu />
+          </div>
+
+          <div className="contentContainer">
+            <Outlet />
+          </div>
         </div>
-        <div className="contentContainer">
-          <Outlet />
-        </div>
+        <Footer />
       </div>
     );
   };
@@ -23,15 +30,27 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+
+        {
+          path: "/users",
+          element: <Users />,
+        },
+
+        {
+          path: "/products",
+          element: <Products />,
+        },
+      ],
     },
     {
-      path: "/about",
-      element: <Users />,
-    },
-    {
-      path: "/products",
-      element: <Products />,
+      path: "/login",
+      element: <Login />,
     },
   ]);
 
