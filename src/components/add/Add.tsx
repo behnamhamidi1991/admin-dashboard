@@ -8,7 +8,12 @@ type Props = {
 };
 
 const Add = (props: Props) => {
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Add new item
+    // axios.post(`/api/${slug}s,`, {})
+  };
 
   return (
     <div className="add">
@@ -26,6 +31,7 @@ const Add = (props: Props) => {
                 <input type={column.type} placeholder={column.field} />
               </div>
             ))}
+          <button>Send</button>
         </form>
       </div>
     </div>
