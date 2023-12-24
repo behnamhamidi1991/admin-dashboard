@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./dataTable.scss";
 import {
   DataGrid,
@@ -9,15 +10,40 @@ import {
 type Props = {
   columns: GridColDef[];
   rows: object[];
+  slug: string;
 };
 
 const DataTable = (props: Props) => {
+  const handleDelete = (id: number) => {
+    // Delete the item
+    // axios.delete(`/api/${slug}/id`)
+    console.log(id + " has been deleted");
+  };
+
+  const actionColumn: GridColDef = {
+    field: "action",
+    headerName: "Action",
+    width: 200,
+    renderCell: (params) => {
+      return (
+        <div className="action">
+          <Link to={`/${props.slug}/${params.row.id}`}>
+            <img src="/view.svg" alt="view-profile" />
+          </Link>
+          <div className="delete" onClick={() => handleDelete(params.row.id)}>
+            <img src="/delete.svg" alt="delete" />
+          </div>
+        </div>
+      );
+    },
+  };
+
   return (
     <div className="dataTable">
       <DataGrid
         className="dataGrid"
         rows={props.rows}
-        columns={props.columns}
+        columns={[...props.columns, actionColumn]}
         initialState={{
           pagination: {
             paginationModel: {
