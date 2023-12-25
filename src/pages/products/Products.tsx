@@ -3,6 +3,7 @@ import Add from "../../components/add/Add";
 import DataTable from "../../components/dataTable/DataTable";
 import "./products.scss";
 import { products } from "../../data";
+import { useState } from "react";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 90 },
@@ -59,6 +60,8 @@ const columns: GridColDef[] = [
 ];
 
 const Products = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="products">
       <div className="info">
@@ -66,7 +69,14 @@ const Products = () => {
         <button onClick={() => setOpen(true)}>Add New Products</button>
       </div>
       <DataTable slug="products" columns={columns} rows={products} />
-      {open && <Add slug="product" columns={columns} rows={products} />}
+      {open && (
+        <Add
+          slug="product"
+          columns={columns}
+          rows={products}
+          setOpen={setOpen}
+        />
+      )}
     </div>
   );
 };
