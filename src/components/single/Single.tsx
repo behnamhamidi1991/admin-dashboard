@@ -10,7 +10,12 @@ const Single = () => {
             <h1>John Doe</h1>
             <button>Update</button>
           </div>
-          <div className="details"></div>
+          <div className="details">
+            <div className="item">
+              <span className="itemTitle">Username:</span>
+              <span className="itemValue">John Doe</span>
+            </div>
+          </div>
         </div>
         <div className="chart"></div>
       </div>
