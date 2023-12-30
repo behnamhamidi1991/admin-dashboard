@@ -50,11 +50,6 @@ function App() {
         },
 
         {
-          path: "/products/:id",
-          element: <Product />,
-        },
-
-        {
           path: "/*",
           element: <NotFound />,
         },
